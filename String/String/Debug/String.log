@@ -1,0 +1,7 @@
+﻿  String.cpp
+D:\gitC资源\CPP\String\String\String.cpp(22,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\gitC资源\CPP\String\String\String.cpp(96,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\gitC资源\CPP\String\String\String.cpp(121,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\gitC资源\CPP\String\String\String.cpp(201,4): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\gitC资源\CPP\String\String\String.cpp(215,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  String.vcxproj -> D:\gitC资源\CPP\String\Debug\String.exe
