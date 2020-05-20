@@ -1,0 +1,4 @@
+﻿  vector_test.cpp
+D:\C++\vector_test\vector_test\vector_test.h(133,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\C++\vector_test\vector_test\vector_test.h(148,21): warning C4018: “<”: 有符号/无符号不匹配
+  vector_test.vcxproj -> D:\C++\vector_test\Debug\vector_test.exe
