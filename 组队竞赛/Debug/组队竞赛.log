@@ -1,0 +1,3 @@
+﻿  test.cpp
+D:\C++\组队竞赛\test.cpp(35,21): warning C4018: “<”: 有符号/无符号不匹配
+  组队竞赛.vcxproj -> D:\C++\组队竞赛\Debug\组队竞赛.exe
