@@ -1,0 +1,4 @@
+﻿  test.cpp
+D:\C++\删除公共字符串\test.cpp(21,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\C++\删除公共字符串\test.cpp(28,20): warning C4018: “<”: 有符号/无符号不匹配
+  删除公共字符串.vcxproj -> D:\C++\删除公共字符串\Debug\删除公共字符串.exe
