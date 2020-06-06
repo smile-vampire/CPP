@@ -1,0 +1,2 @@
+D:\C++\BSTree\Debug\BSTree.exe
+D:\C++\BSTree\Debug\BSTree.pdb
