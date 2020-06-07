@@ -1,0 +1,3 @@
+﻿  test.cpp
+D:\C++\连续最大和\test.cpp(30,20): warning C4018: “<”: 有符号/无符号不匹配
+  连续最大和.vcxproj -> D:\C++\连续最大和\Debug\连续最大和.exe
