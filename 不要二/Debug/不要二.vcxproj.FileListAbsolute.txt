@@ -1,0 +1,2 @@
+D:\C++\不要二\Debug\不要二.exe
+D:\C++\不要二\Debug\不要二.pdb
