@@ -1,0 +1,4 @@
+﻿  test.cpp
+D:\C++\AVL\AVLTree.h(17,1): error C2760: 语法错误: 意外标记 "}"，应为 "{"
+D:\C++\AVL\AVLTree.h(17): message : 查看对正在编译的 类 模板 实例化“AVLTreeNode<K,V>”的引用
+D:\C++\AVL\AVLTree.h(17,1): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
