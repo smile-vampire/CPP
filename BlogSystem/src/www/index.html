@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>闫凯的博客</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="editor/css/editormd.preview.css" />
+  <link rel="stylesheet" href="editor/css/editormd.css" />
+  <style>            
+    .editormd-html-preview {
+        width: 90%;
+        margin: 0 auto;
+    }
+</style>
+</head>
+
+<body id="blog">
+<div id="app">
+<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
+</header>
+<hr>
+<!-- nav start -->
+<nav class="am-g am-g-fixed blog-fixed blog-nav">
+<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="blog-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav">
+      <li class="am-active"><a href="lw-index.html">首页</a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          首页布局 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="lw-index.html">1. blog-index-standard</a></li>         
+          <li><a href="lw-index-nosidebar.html">2. blog-index-nosidebar</a></li>
+          <li><a href="lw-index-center.html">3. blog-index-layout</a></li>
+          <li><a href="lw-index-noslider.html">4. blog-index-noslider</a></li>
+        </ul>
+      </li>
+      <li><a href="lw-article.html">标准文章</a></li>
+      <li><a href="lw-img.html">图片库</a></li>
+      <li><a href="lw-article-fullwidth.html">全宽页面</a></li>
+      <li><a href="lw-timeline.html">存档</a></li>
+      <li class="am-active"><a href="#" v-on:click="add_blog()">添加博客</a></li>
+    </ul>
+    <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
+      <div class="am-form-group">
+        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+      </div>
+    </form>
+  </div>
+</nav>
+<hr>
+<!-- nav end -->
+<!-- banner start -->
+<!-- banner end -->
+
+<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+    <div class="am-u-md-8 am-u-sm-12" v-show="page_falg==0">
+
+        <article class="am-g blog-entry-article" v-for="blog in blogs" v-show="tags.length > 0 && users.length > 0">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f18.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">{{get_tignamebyid(blog.tag_id)}}&nbsp;</a></span>
+                <span> @{{get_usernamebyid(blog.user_id)}} &nbsp;</span>
+                <span>{{blog.ctime}}</span>
+                <h1><a href="#" v-on:click="show_blog(blog)">{{blog.title}}</a></h1>
+                <button type="button" class="am-btn am-btn-primary" v-on:click="edit_blog(blog)">编辑</button>
+                <button type="button" class="am-btn am-btn-danger" v-on:click="delete_blog(blog)">删除 </button>
+            </div>
+        </article>
+
+        
+        <ul class="am-pagination">
+  <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
+  <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
+</ul>
+    </div>
+    <div class="am-u-md-12 am-u-sm-12" v-show="page_falg==1">
+      <div id="test-editormd-view" >
+        <textarea style="display:none;" name="test-editormd-markdown-doc" v-model="sblog.content"></textarea>   
+        
+      </div>
+      <div>
+        <button type="button" class="am-btn am-btn-primary" v-on:click="update_blog()">提交</button>
+        <button type="button" class="am-btn am-btn-danger" v-on:click="back_list()">返回</button> 
+      </div>
+    </div>
+    
+    <div class="am-u-md-12 am-u-sm-12" v-show="page_falg==2">
+      <div id="insert-editormd-view" >
+        <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>   
+        
+      </div>
+      <div>
+        <button type="button" class="am-btn am-btn-primary" v-on:click="commit_blog()">提交</button>
+        <button type="button" class="am-btn am-btn-danger" v-on:click="back_list()">返回</button> 
+      </div>
+    </div>
+    
+
+    <div class="am-u-md-4 am-u-sm-12 blog-sidebar" v-show="page_falg==0">
+        <div class="blog-sidebar-widget blog-bor">
+            <h2 class="blog-text-center blog-title"><span>{{about}}</span></h2>
+            <img src="pic.png" alt="about me" class="blog-entry-img" >
+            <p>{{author}}</p>
+            <p>
+            我是帅气的闫凯。
+            </p>
+        <p>自强不息，励志图存。</p>
+        </div>
+        <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
+            <h2 class="blog-title"><span>TAG cloud</span></h2>
+            <div class="am-u-sm-12 blog-clear-padding">
+                <a href="" class="blog-tag" v-for="tag in tags">{{tag.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content end -->
+
+
+
+  <footer class="blog-footer">
+    <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
+    </div>    
+    <div class="blog-text-center">© 2015 Author by Yankai</div>    
+  </footer>
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--<script src="assets/js/jquery.min.js"></script>-->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="editor/lib/marked.min.js"></script>
+<script src="editor/lib/prettify.min.js"></script>
+<script src="editor/lib/raphael.min.js"></script>
+<script src="editor/lib/underscore.min.js"></script>
+<script src="editor/lib/sequence-diagram.min.js"></script>
+<script src="editor/lib/flowchart.min.js"></script>
+<script src="editor/lib/jquery.flowchart.min.js"></script>
+<script src="editor/editormd.js"></script>
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+      author : "闫凯",
+      about : "关于我",
+      blogs : [],
+      tags : [],
+      users : [],
+      sblog : {
+        id:null,
+        tag_id:null,
+        uer_id:null,
+        title:null,
+        content:null
+      },
+      page_falg:0
+    },
+    methods: {
+        get_allblogs : function() {
+            //使用ajax发起异步请求获取博客数据
+            $.ajax({
+                url : "/blog",
+                type : "get",
+                context : this,//传参的这个this是vue对象，为所有AJAX的相关回调函数规定this值
+                success : function(result, status) {
+                    //异步成功之后我们需要做什么的回调函数
+                  this.blogs = result;//将获得的博客json串直接放到vue对象的blogs中
+                }
+            })
+        },
+      get_alltags : function() {
+        $.ajax({
+          url : "/tag",
+          type: "get",
+          context : this,
+          success : function(result, status) {
+            this.tags = result;
+          }
+        })
+      },
+      get_allusers : function() {
+        $.ajax({
+          url : "/user",
+          type : "get",
+          context : this,
+          success : function(result, status) {
+            this.users = result;
+          }
+        })
+      },
+      get_usernamebyid : function(id) {
+        for(var i=0; i<this.users.length;i++) {
+          this.users[i].id=id;
+          return this.users[i].name;
+        }
+      },
+      get_tignamebyid : function(id) {
+        for(var i=0; i<this.tags.length;i++) {
+          this.tags[i].id=id;
+          return this.tags[i].name;
+        }
+      },
+      show_blog : function(blog) {
+        this.sblog=blog;
+        testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                        markdown        : blog.content,//
+                        htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                        //toc             : false,
+                        tocm            : true,    // Using [TOCM]
+                        emoji           : true,
+                        taskList        : true,
+                        tex             : true,  // 默认不解析
+                        flowChart       : true,  // 默认不解析
+                        sequenceDiagram : true,  // 默认不解析
+                    });
+      },
+      edit_blog:function(blog) {
+        this.sblog=blog;
+        testEditor = editormd("test-editormd-view", {
+                        width  : "100%",
+                        height : 640,
+                        path   : "editor/lib/",
+                        appendMarkdown : blog.content,
+                        saveHTMLToTextarea : true
+                    });
+      },
+      update_blog:function() {
+        var content=testEditor.getMarkdown(); 
+        var body = {
+          id:this.sblog.id,
+          tag_id:this.sblog.id,
+          user_id:this.sblog.id,
+          title:this.sblog.title,
+          content:content
+        }
+        $.ajax({
+          url : "/blog/" + this.sblog.id,
+          type : "put",
+          date : JSON.stringify(body),
+          context : this,
+          success : function(result, status) {
+            this.page_falg = 0;
+            this.get_allblogs();
+          }
+        })
+      },
+      back_list:function() {
+        this.page_falg = 0;
+      },
+      delete_blog:function(blog) {
+        $.ajax({
+          url : "/blog/" + blog.id,
+          type : "delete",
+          context : this,
+          success : function(result, status) {
+            this.page_falg = 0;
+            this.get_allblogs();
+          }
+        })
+      },
+      add_blog:function() {
+        this.page_falg = 2;
+        insertEditor = editormd("insert-editormd-view", {
+                        width  : "100%",
+                        height : 640,
+                        path   : "editor/lib/",
+                        appendMarkdown : "",
+                        saveHTMLToTextarea : true
+                    });
+      },
+      commit_blog:function() {
+        var content=insertEditor.getMarkdown(); 
+        var body = {
+          tag_id:1,
+          user_id:1,
+          title:"这是插入博客的标题",
+          content:content
+        }
+        $.ajax({
+          url : "/blog",
+          type : "post",
+          date : JSON.stringify(body),
+          context : this,
+          success : function(result, status) {
+            this.page_falg=0;
+            this.get_allblogs();
+          }
+        })
+      }
+    }
+});
+  app.get_alltags();
+  app.get_allusers();
+  app.get_allblogs();
+</script>
+</body>
+</html>
